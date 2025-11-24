@@ -7,6 +7,7 @@ if [ $USERID -ne 0 ]; then
     exit 1
 else
     echo "You are running this dcript as root user"
+fi 
 
 dnf install mysql -y
 
@@ -16,4 +17,4 @@ if [ $? -eq 0 ]; then
 else
     echo "mysql installation failed"
     exit 1
-fi 
+fi
