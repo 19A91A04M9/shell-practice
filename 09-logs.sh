@@ -12,7 +12,7 @@ LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 
 
 mkdir -p $LOGS_FOLDER
-echo " Script started Execution at : $(date) "
+echo " Script started Execution at : $(date) " | tee -a $LOG_FILE
 
 if [ $USERID -ne 0 ]; then
     echo -e "$R Error:: Please run this script as root user $N"
@@ -36,7 +36,7 @@ if [ $? -ne 0 ]; then
     dnf install mysql -y  &>> $LOG_FILE
     VALIDATE $? "MySQL"
 else 
-    echo -e " MySQL is already installed ... $Y skipping $N"
+    echo -e " MySQL is already installed ... $Y skipping $N" | tee -a $LOG_FILE
 fi 
 
 dnf list installed nginx  &>> $LOG_FILE
@@ -44,7 +44,7 @@ if [ $? -ne 0 ]; then
     dnf install nginx -y  &>> $LOG_FILE
     VALIDATE $? "Nginx"
 else 
-    echo -e " Ngnix is already installeed ... $Y skipping $N"
+    echo -e " Ngnix is already installeed ... $Y skipping $N" | tee -a $LOG_FILE
 fi 
 
 # MONGOSH
@@ -54,5 +54,5 @@ if [ $? -ne 0 ]; then
     dnf install python3 -y  &>> $LOG_FILE
     VALIDATE $? "python3"
 else
-    echo -e " python3 is already installed ... $Y skipping $N"
+    echo -e " python3 is already installed ... $Y skipping $N" | tee -a $LOG_FILE
 fi
