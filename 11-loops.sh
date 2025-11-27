@@ -42,4 +42,3 @@ do
     fi
 done    
 
-echo " Script ended Execution at : $(date) " | tee -a $LOG_FILE
